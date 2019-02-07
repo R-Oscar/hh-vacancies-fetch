@@ -41,15 +41,14 @@ function SearchBar({ classes }) {
 SearchBar.propTypes = {
   classes: PropTypes.shape({
     button: PropTypes.shape({
-      margin: PropTypes.number
+      margin: PropTypes.string
     }),
     input: PropTypes.shape({
       display: PropTypes.string
     }),
     textField: PropTypes.shape({
-      marginLeft: PropTypes.number,
-      marginRight: PropTypes.number,
-      width: PropTypes.number
+      marginLeft: PropTypes.string,
+      marginRight: PropTypes.string
     })
   })
 };
