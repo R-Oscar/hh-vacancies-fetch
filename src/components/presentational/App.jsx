@@ -4,29 +4,50 @@ import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import Results from './Results';
 
-function App({ data }) {
+function App({ tabValue, tableData, chartData }) {
   return (
     <>
       <SearchBar />
-      <Results data={data} />
+      <Results
+        tabValue={tabValue}
+        tableData={tableData}
+        chartData={chartData}
+      />
     </>
   );
 }
 
 App.propTypes = {
-  data: PropTypes.arrayOf(
+  tabValue: PropTypes.number,
+  tableData: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      employer: PropTypes.string,
-      salary: PropTypes.string,
-      requirement: PropTypes.string
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      employer: PropTypes.string.isRequired,
+      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      requirement: PropTypes.string.isRequired
     })
+  ),
+  chartData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          x: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            .isRequired,
+          y: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            .isRequired
+        })
+      ).isRequired
+    }).isRequired
   )
 };
 
 App.defaultProps = {
-  data: []
+  tabValue: 0,
+  tableData: [],
+  chartData: []
 };
 
 export default App;

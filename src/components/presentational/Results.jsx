@@ -9,34 +9,53 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 
 import Table from './Table';
+import Chart from './Chart';
 
-function Results({ data }) {
+function Results({ tabValue, tableData, chartData }) {
   return (
     <Paper square>
-      <Tabs value={0}>
+      <Tabs value={tabValue}>
         <Tab icon={<ViewListIcon />} />
         <Tab icon={<ShowChartIcon />} />
       </Tabs>
 
-      <Table data={data} />
+      {tabValue === 0 && <Table data={tableData} />}
+      {tabValue === 1 && <Chart data={chartData} />}
     </Paper>
   );
 }
 
 Results.propTypes = {
-  data: PropTypes.arrayOf(
+  tabValue: PropTypes.number,
+  tableData: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      employer: PropTypes.string,
-      salary: PropTypes.string,
-      requirement: PropTypes.string
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      employer: PropTypes.string.isRequired,
+      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      requirement: PropTypes.string.isRequired
     })
+  ),
+  chartData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          x: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            .isRequired,
+          y: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+            .isRequired
+        })
+      ).isRequired
+    }).isRequired
   )
 };
 
 Results.defaultProps = {
-  data: []
+  tabValue: 0,
+  tableData: [],
+  chartData: []
 };
 
 export default Results;

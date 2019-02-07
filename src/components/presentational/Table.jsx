@@ -37,11 +37,12 @@ function ResultsTable({ data }) {
 ResultsTable.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      employer: PropTypes.string,
-      salary: PropTypes.string,
-      requirement: PropTypes.string
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      employer: PropTypes.string.isRequired,
+      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      requirement: PropTypes.string.isRequired
     })
   )
 };
