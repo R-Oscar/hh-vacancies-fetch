@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
-
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
@@ -20,36 +16,14 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 
+import SearchBar from './SearchBar';
+
 import { stripHtmlTags } from '../../utils';
 
-const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
-    display: 'none'
-  }
-});
-
-function App({ classes, data }) {
+function App({ data }) {
   return (
     <>
-      <TextField
-        id="standard-search"
-        label="Введите интересующую вакансию"
-        type="search"
-        margin="normal"
-        className={classes.textField}
-        fullWidth
-      />
-
-      <Button variant="contained" className={classes.button}>
-        Поиск
-      </Button>
+      <SearchBar />
 
       <Paper square>
         <Tabs value={0}>
@@ -83,19 +57,6 @@ function App({ classes, data }) {
 }
 
 App.propTypes = {
-  classes: PropTypes.shape({
-    button: PropTypes.shape({
-      margin: PropTypes.number
-    }),
-    input: PropTypes.shape({
-      display: PropTypes.string
-    }),
-    textField: PropTypes.shape({
-      marginLeft: PropTypes.number,
-      marginRight: PropTypes.number,
-      width: PropTypes.number
-    })
-  }),
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -108,8 +69,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  classes: {},
   data: []
 };
 
-export default withStyles(styles)(App);
+export default App;
