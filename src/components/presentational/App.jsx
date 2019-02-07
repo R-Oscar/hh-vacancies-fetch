@@ -4,21 +4,16 @@ import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import Results from './Results';
 
-function App({ tabValue, tableData, chartData }) {
+function App({ tableData, chartData }) {
   return (
     <>
       <SearchBar />
-      <Results
-        tabValue={tabValue}
-        tableData={tableData}
-        chartData={chartData}
-      />
+      <Results tableData={tableData} chartData={chartData} />
     </>
   );
 }
 
 App.propTypes = {
-  tabValue: PropTypes.number,
   tableData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -45,7 +40,6 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  tabValue: 0,
   tableData: [],
   chartData: []
 };

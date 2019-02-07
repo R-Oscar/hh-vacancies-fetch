@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Tabs from '@material-ui/core/Tabs';
@@ -11,10 +11,17 @@ import ShowChartIcon from '@material-ui/icons/ShowChart';
 import Table from './Table';
 import Chart from './Chart';
 
-function Results({ tabValue, tableData, chartData }) {
+function Results({ tableData, chartData }) {
+  const [tabValue, setTabValue] = useState(0);
+
+  // TODO: вынести в контейнер
+  function handleTabChange(event, value) {
+    setTabValue(value);
+  }
+
   return (
     <Paper square>
-      <Tabs value={tabValue}>
+      <Tabs value={tabValue} onChange={handleTabChange}>
         <Tab icon={<ViewListIcon />} />
         <Tab icon={<ShowChartIcon />} />
       </Tabs>
@@ -26,7 +33,6 @@ function Results({ tabValue, tableData, chartData }) {
 }
 
 Results.propTypes = {
-  tabValue: PropTypes.number,
   tableData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -53,7 +59,6 @@ Results.propTypes = {
 };
 
 Results.defaultProps = {
-  tabValue: 0,
   tableData: [],
   chartData: []
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import DumbApp from '../presentational/App';
 
@@ -6,8 +6,6 @@ import data from '../../tempdata';
 import { stripHtmlTags } from '../../utils';
 
 export default function App() {
-  const [tabValue, setTabValue] = useState(0);
-
   const processedTableData = data.map(
     ({ id, name, employer, salary, requirement }) => ({
       id,
@@ -30,11 +28,7 @@ export default function App() {
 
   return (
     <>
-      <DumbApp
-        tabValue={tabValue}
-        tableData={processedTableData}
-        chartData={processedChartData}
-      />
+      <DumbApp tableData={processedTableData} chartData={processedChartData} />
     </>
   );
 }
