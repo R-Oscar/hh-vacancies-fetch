@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import DumbTable from '../presentational/Table';
+
+import { tableType } from '../../types';
 
 function Table({ data }) {
   const [page, setPage] = useState(0);
@@ -29,16 +30,7 @@ function Table({ data }) {
 }
 
 Table.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      employer: PropTypes.string.isRequired,
-      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      requirement: PropTypes.string.isRequired
-    })
-  )
+  data: tableType
 };
 
 Table.defaultProps = {

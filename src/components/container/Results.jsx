@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import DumbResults from '../presentational/Results';
+
+import { chartType, tableType } from '../../types';
 
 function Results({ tableData, chartData }) {
   const [tabValue, setTabValue] = useState(0);
@@ -21,24 +22,8 @@ function Results({ tableData, chartData }) {
 }
 
 Results.propTypes = {
-  tableData: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      employer: PropTypes.string.isRequired,
-      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      requirement: PropTypes.string.isRequired
-    })
-  ),
-  chartData: PropTypes.arrayOf(
-    PropTypes.shape({
-      employer: PropTypes.string.isRequired,
-      from: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
-    })
-  )
+  tableData: tableType,
+  chartData: chartType
 };
 
 Results.defaultProps = {
