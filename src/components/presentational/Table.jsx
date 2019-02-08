@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 
+import { tableType } from '../../types';
+
 function ResultsTable({
   data,
   page,
@@ -59,16 +61,7 @@ function ResultsTable({
 }
 
 ResultsTable.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      employer: PropTypes.string.isRequired,
-      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      requirement: PropTypes.string.isRequired
-    })
-  ),
+  data: tableType,
   page: PropTypes.number,
   rowsPerPage: PropTypes.number,
   handleChangePage: PropTypes.func.isRequired,

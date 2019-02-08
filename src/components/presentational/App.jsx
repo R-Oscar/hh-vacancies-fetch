@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import Results from '../container/Results';
 
+import { tableType, chartType } from '../../types';
+
 function App({
   tableData,
   chartData,
@@ -27,24 +29,8 @@ function App({
 }
 
 App.propTypes = {
-  tableData: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      employer: PropTypes.string.isRequired,
-      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      requirement: PropTypes.string.isRequired
-    })
-  ),
-  chartData: PropTypes.arrayOf(
-    PropTypes.shape({
-      employer: PropTypes.string.isRequired,
-      from: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
-    })
-  ),
+  tableData: tableType,
+  chartData: chartType,
   searchQuery: PropTypes.string,
   updateSearchQuery: PropTypes.func.isRequired,
   handleUpdateResultsButton: PropTypes.func.isRequired,

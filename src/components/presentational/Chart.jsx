@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { ResponsiveBar } from '@nivo/bar';
 
+import { chartType } from '../../types';
+
 import './Chart.css';
 
 function Chart({ data }) {
@@ -45,14 +47,7 @@ function Chart({ data }) {
 }
 
 Chart.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      employer: PropTypes.string.isRequired,
-      from: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
-    })
-  )
+  data: chartType
 };
 
 Chart.defaultProps = {

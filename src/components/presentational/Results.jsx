@@ -11,6 +11,8 @@ import ShowChartIcon from '@material-ui/icons/ShowChart';
 import Table from '../container/Table';
 import Chart from './Chart';
 
+import { tableType, chartType } from '../../types';
+
 import './Results.css';
 
 function Results({ tableData, chartData, tabValue, handleTabChange }) {
@@ -28,24 +30,8 @@ function Results({ tableData, chartData, tabValue, handleTabChange }) {
 }
 
 Results.propTypes = {
-  tableData: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      employer: PropTypes.string.isRequired,
-      salary: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      requirement: PropTypes.string.isRequired
-    })
-  ),
-  chartData: PropTypes.arrayOf(
-    PropTypes.shape({
-      employer: PropTypes.string.isRequired,
-      from: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
-    })
-  ),
+  tableData: tableType,
+  chartData: chartType,
   tabValue: PropTypes.number,
   handleTabChange: PropTypes.func.isRequired
 };
