@@ -1,44 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Bar } from '@nivo/bar';
+import { ResponsiveBar } from '@nivo/bar';
+
+import './Chart.css';
 
 function Chart({ data }) {
   return (
-    <Bar
-      data={data}
-      keys={['from', 'to']}
-      indexBy="employer"
-      width={900}
-      height={600}
-      axisBottom={{
-        orient: 'bottom',
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: -90,
-        legend: 'работодатель',
-        legendOffset: 150,
-        legendPosition: 'middle'
-      }}
-      axisLeft={{
-        orient: 'left',
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: 'оклад',
-        legendOffset: -50,
-        legendPosition: 'middle'
-      }}
-      colors="set1"
-      enableDotLabel
-      enableGridY={false}
-      margin={{
-        top: 50,
-        right: 110,
-        bottom: 250,
-        left: 60
-      }}
-    />
+    <div className="bar-container">
+      <ResponsiveBar
+        data={data}
+        keys={['from', 'to']}
+        indexBy="employer"
+        axisBottom={{
+          orient: 'bottom',
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: -90,
+          legend: 'работодатель',
+          legendOffset: 150,
+          legendPosition: 'middle'
+        }}
+        axisLeft={{
+          orient: 'left',
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+          legend: 'оклад',
+          legendOffset: -50,
+          legendPosition: 'middle'
+        }}
+        enableLabel={false}
+        colors="set1"
+        // groupMode="grouped"
+        margin={{
+          top: 50,
+          right: 10,
+          bottom: 250,
+          left: 60
+        }}
+        padding={0.25}
+      />
+    </div>
   );
 }
 

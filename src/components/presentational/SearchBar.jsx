@@ -29,7 +29,7 @@ function SearchBar({
     <form onSubmit={handleUpdateResultsButton}>
       <TextField
         id="standard-search"
-        label="Введите интересующую вакансию"
+        label="Введите интересующую вас вакансию"
         type="search"
         margin="normal"
         className={classes.textField}

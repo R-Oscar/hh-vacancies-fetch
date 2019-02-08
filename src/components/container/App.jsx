@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import DumbApp from '../presentational/App';
 
-// import data from '../../tempdata';
 import { stripHtmlTags } from '../../utils';
 
 export default function App() {
@@ -10,26 +9,6 @@ export default function App() {
   const [chartData, setChartData] = useState([]);
   const [searchQuery, changeSearchQuery] = useState('');
   const [resultsVisible, setResultsVisible] = useState(false);
-
-  // const processedTableData = data.map(
-  //   ({ id, name, employer, salary, requirement }) => ({
-  //     id,
-  //     name,
-  //     employer,
-  //     salary: salary || 'Не указан',
-  //     requirement: stripHtmlTags(requirement)
-  //   })
-  // );
-
-  // const processedChartData = [
-  //   {
-  //     id: 'salary',
-  //     data: data.map(({ employer, salary }) => ({
-  //       x: employer,
-  //       y: salary || 0
-  //     }))
-  //   }
-  // ];
 
   async function fetchVacancies(text) {
     const data = await fetch(
@@ -48,12 +27,14 @@ export default function App() {
     );
 
     setChartData(
-      response.items.map(({ id, employer, salary }) => ({
-        employer: `${employer.name}
+      response.items
+        .map(({ id, employer, salary }) => ({
+          employer: `${employer.name}
           (${id})`,
-        from: salary ? salary.from || 0 : 0,
-        to: salary && salary.to ? salary.to - salary.from || 0 : 0
-      }))
+          from: salary ? salary.from || 0 : 0,
+          to: salary && salary.to ? salary.to - salary.from || 0 : 0
+        }))
+        .filter(d => d.from !== 0 || d.to !== 0)
     );
   }
 
