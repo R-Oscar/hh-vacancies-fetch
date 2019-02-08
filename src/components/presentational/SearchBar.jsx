@@ -26,7 +26,7 @@ function SearchBar({
   handleUpdateResultsButton
 }) {
   return (
-    <>
+    <form onSubmit={handleUpdateResultsButton}>
       <TextField
         id="standard-search"
         label="Введите интересующую вакансию"
@@ -38,14 +38,10 @@ function SearchBar({
         onChange={updateSearchQuery}
       />
 
-      <Button
-        variant="contained"
-        className={classes.button}
-        onClick={handleUpdateResultsButton}
-      >
+      <Button variant="contained" className={classes.button} type="submit">
         Поиск
       </Button>
-    </>
+    </form>
   );
 }
 

@@ -61,7 +61,8 @@ export default function App() {
     changeSearchQuery(event.target.value);
   }
 
-  async function handleUpdateResultsButton() {
+  async function handleUpdateResultsButton(event) {
+    event.preventDefault();
     await fetchVacancies(searchQuery);
     setResultsVisible(true);
   }
