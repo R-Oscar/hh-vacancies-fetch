@@ -32,7 +32,6 @@ function Chart({ data }) {
         }}
         enableLabel={false}
         colors="set1"
-        // groupMode="grouped"
         margin={{
           top: 50,
           right: 10,

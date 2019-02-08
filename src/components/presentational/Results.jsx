@@ -11,9 +11,11 @@ import ShowChartIcon from '@material-ui/icons/ShowChart';
 import Table from '../container/Table';
 import Chart from './Chart';
 
+import './Results.css';
+
 function Results({ tableData, chartData, tabValue, handleTabChange }) {
   return (
-    <Paper square>
+    <Paper className="results-container" square>
       <Tabs value={tabValue} onChange={handleTabChange}>
         <Tab icon={<ViewListIcon />} />
         <Tab icon={<ShowChartIcon />} />

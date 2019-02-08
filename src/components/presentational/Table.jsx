@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
-// import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 function ResultsTable({
   data,
@@ -52,7 +51,6 @@ function ResultsTable({
             }}
             onChangePage={handleChangePage}
             onChangeRowsPerPage={handleChangeRowsPerPage}
-            // ActionsComponent={TablePaginationActions}
           />
         </TableRow>
       </TableFooter>
