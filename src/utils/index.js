@@ -1,3 +1,3 @@
 export function stripHtmlTags(str) {
-  return str.replace(/(<([^>]+)>)/gi, '');
+  return str && str.replace(/(<([^>]+)>)/gi, '');
 }

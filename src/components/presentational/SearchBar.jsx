@@ -19,7 +19,12 @@ const styles = theme => ({
   }
 });
 
-function SearchBar({ classes }) {
+function SearchBar({
+  classes,
+  searchQuery,
+  updateSearchQuery,
+  handleUpdateResultsButton
+}) {
   return (
     <>
       <TextField
@@ -29,9 +34,15 @@ function SearchBar({ classes }) {
         margin="normal"
         className={classes.textField}
         fullWidth
+        value={searchQuery}
+        onChange={updateSearchQuery}
       />
 
-      <Button variant="contained" className={classes.button}>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={handleUpdateResultsButton}
+      >
         Поиск
       </Button>
     </>
@@ -50,11 +61,15 @@ SearchBar.propTypes = {
       marginLeft: PropTypes.string,
       marginRight: PropTypes.string
     })
-  })
+  }),
+  searchQuery: PropTypes.string,
+  updateSearchQuery: PropTypes.func.isRequired,
+  handleUpdateResultsButton: PropTypes.func.isRequired
 };
 
 SearchBar.defaultProps = {
-  classes: {}
+  classes: {},
+  searchQuery: ''
 };
 
 export default withStyles(styles)(SearchBar);

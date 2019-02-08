@@ -8,6 +8,8 @@ import { stripHtmlTags } from '../../utils';
 export default function App() {
   const [tableData, setTableData] = useState([]);
   const [chartData, setChartData] = useState([]);
+  const [searchQuery, changeSearchQuery] = useState('');
+  const [resultsVisible, setResultsVisible] = useState(false);
 
   // const processedTableData = data.map(
   //   ({ id, name, employer, salary, requirement }) => ({
@@ -29,9 +31,11 @@ export default function App() {
   //   }
   // ];
 
-  async function fetchVacancies() {
+  async function fetchVacancies(text) {
+    if (!text) return;
+
     const data = await fetch(
-      'https://api.hh.ru/vacancies?area=99&text=JavaScript'
+      `https://api.hh.ru/vacancies?area=99&text=${text}`
     );
     const response = await data.json();
 
@@ -40,8 +44,8 @@ export default function App() {
         id,
         name,
         employer: employer.name,
-        salary: salary ? salary.from : 'Не указан',
-        requirement: stripHtmlTags(snippet.requirement)
+        salary: salary ? salary.from || 'Не указан' : 'Не указан',
+        requirement: stripHtmlTags(snippet.requirement) || 'Не указаны'
       }))
     );
 
@@ -57,13 +61,29 @@ export default function App() {
     ]);
   }
 
+  function updateSearchQuery(event) {
+    changeSearchQuery(event.target.value);
+  }
+
+  async function handleUpdateResultsButton() {
+    await fetchVacancies(searchQuery);
+    setResultsVisible(true);
+  }
+
   useEffect(() => {
     fetchVacancies();
   }, []);
 
   return (
     <>
-      <DumbApp tableData={tableData} chartData={chartData} />
+      <DumbApp
+        searchQuery={searchQuery}
+        updateSearchQuery={updateSearchQuery}
+        tableData={tableData}
+        chartData={chartData}
+        handleUpdateResultsButton={handleUpdateResultsButton}
+        resultsVisible={resultsVisible}
+      />
     </>
   );
 }

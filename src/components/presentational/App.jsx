@@ -4,11 +4,24 @@ import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import Results from './Results';
 
-function App({ tableData, chartData }) {
+function App({
+  tableData,
+  chartData,
+  searchQuery,
+  updateSearchQuery,
+  handleUpdateResultsButton,
+  resultsVisible
+}) {
   return (
     <>
-      <SearchBar />
-      <Results tableData={tableData} chartData={chartData} />
+      <SearchBar
+        searchQuery={searchQuery}
+        updateSearchQuery={updateSearchQuery}
+        handleUpdateResultsButton={handleUpdateResultsButton}
+      />
+      {resultsVisible && (
+        <Results tableData={tableData} chartData={chartData} />
+      )}
     </>
   );
 }
@@ -36,12 +49,18 @@ App.propTypes = {
         })
       ).isRequired
     }).isRequired
-  )
+  ),
+  searchQuery: PropTypes.string,
+  updateSearchQuery: PropTypes.func.isRequired,
+  handleUpdateResultsButton: PropTypes.func.isRequired,
+  resultsVisible: PropTypes.bool
 };
 
 App.defaultProps = {
   tableData: [],
-  chartData: []
+  chartData: [],
+  searchQuery: '',
+  resultsVisible: false
 };
 
 export default App;
