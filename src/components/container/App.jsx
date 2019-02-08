@@ -52,7 +52,7 @@ export default function App() {
         employer: `${employer.name}
           (${id})`,
         from: salary ? salary.from || 0 : 0,
-        to: salary ? salary.to || 0 : 0
+        to: salary && salary.to ? salary.to - salary.from || 0 : 0
       }))
     );
   }
