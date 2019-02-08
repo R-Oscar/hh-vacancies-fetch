@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import SearchBar from './SearchBar';
-import Results from './Results';
+import Results from '../container/Results';
 
 function App({
   tableData,
