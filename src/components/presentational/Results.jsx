@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 
-import Table from './Table';
+import Table from '../container/Table';
 import Chart from './Chart';
 
 function Results({ tableData, chartData }) {

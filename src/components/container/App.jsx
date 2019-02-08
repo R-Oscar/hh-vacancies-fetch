@@ -45,14 +45,6 @@ export default function App() {
       }))
     );
 
-    console.log({
-      id: 'salary',
-      data: response.items.map(({ id, employer, salary }) => ({
-        x: `${employer.name} (${id})`,
-        y: salary ? salary.from : 0
-      }))
-    });
-
     setChartData([
       {
         id: 'salary',
