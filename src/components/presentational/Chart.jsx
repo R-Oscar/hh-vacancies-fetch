@@ -7,15 +7,15 @@ function Chart({ data }) {
   return (
     <Line
       data={data}
-      width={700}
-      height={400}
+      width={900}
+      height={600}
       axisBottom={{
         orient: 'bottom',
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: 0,
+        tickRotation: -90,
         legend: 'работодатель',
-        legendOffset: 36,
+        legendOffset: 150,
         legendPosition: 'middle'
       }}
       axisLeft={{
@@ -24,7 +24,7 @@ function Chart({ data }) {
         tickPadding: 5,
         tickRotation: 0,
         legend: 'оклад',
-        legendOffset: -40,
+        legendOffset: -50,
         legendPosition: 'middle'
       }}
       colors="set1"
@@ -33,7 +33,7 @@ function Chart({ data }) {
       margin={{
         top: 50,
         right: 110,
-        bottom: 50,
+        bottom: 250,
         left: 60
       }}
     />
