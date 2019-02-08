@@ -32,8 +32,6 @@ export default function App() {
   // ];
 
   async function fetchVacancies(text) {
-    if (!text) return;
-
     const data = await fetch(
       `https://api.hh.ru/vacancies?area=99&text=${text}`
     );
@@ -49,16 +47,14 @@ export default function App() {
       }))
     );
 
-    setChartData([
-      {
-        id: 'salary',
-        data: response.items.map(({ id, employer, salary }) => ({
-          x: `${employer.name}
+    setChartData(
+      response.items.map(({ id, employer, salary }) => ({
+        employer: `${employer.name}
           (${id})`,
-          y: salary ? salary.from || 0 : 0
-        }))
-      }
-    ]);
+        from: salary ? salary.from || 0 : 0,
+        to: salary ? salary.to || 0 : 0
+      }))
+    );
   }
 
   function updateSearchQuery(event) {

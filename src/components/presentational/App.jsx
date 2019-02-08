@@ -39,16 +39,11 @@ App.propTypes = {
   ),
   chartData: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      data: PropTypes.arrayOf(
-        PropTypes.shape({
-          x: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-            .isRequired,
-          y: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-            .isRequired
-        })
-      ).isRequired
-    }).isRequired
+      employer: PropTypes.string.isRequired,
+      from: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+    })
   ),
   searchQuery: PropTypes.string,
   updateSearchQuery: PropTypes.func.isRequired,

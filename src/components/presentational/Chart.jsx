@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Line } from '@nivo/line';
+import { Bar } from '@nivo/bar';
 
 function Chart({ data }) {
   return (
-    <Line
+    <Bar
       data={data}
+      keys={['from', 'to']}
+      indexBy="employer"
       width={900}
       height={600}
       axisBottom={{
@@ -43,16 +45,11 @@ function Chart({ data }) {
 Chart.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      data: PropTypes.arrayOf(
-        PropTypes.shape({
-          x: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-            .isRequired,
-          y: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-            .isRequired
-        })
-      ).isRequired
-    }).isRequired
+      employer: PropTypes.string.isRequired,
+      from: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+    })
   )
 };
 
